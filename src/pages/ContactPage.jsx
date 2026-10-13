@@ -1,0 +1,20 @@
+import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faCommentDots, faEnvelope, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { Input } from '../components/ui/input'
+import { Button } from '../components/ui/button'
+import { STORE_CONFIG } from '../config/store'
+
+export function ContactPage() {
+  const [sent, setSent] = useState(false)
+  const [errors, setErrors] = useState({})
+  const submit = e => { e.preventDefault(); const data = new FormData(e.currentTarget); const next = {}; if ((data.get('name') || '').trim().length < 2) next.name = 'Indiquez votre nom.'; if (!/^\S+@\S+\.\S+$/.test(data.get('email') || '')) next.email = 'Indiquez une adresse e-mail valide.'; if ((data.get('message') || '').trim().length < 10) next.message = 'Votre message doit contenir au moins 10 caractères.'; setErrors(next); if (!Object.keys(next).length) setSent(true) }
+  return <main><section className="page-hero"><div className="container-main"><span className="eyebrow">Nous sommes à votre écoute</span><h1>Parlons de votre besoin</h1><p>Une question sur un produit ou une livraison ? L’équipe VitalNova vous répond.</p></div></section>
+      <section className="container-main -mt-10 relative z-10 grid gap-6 pb-10 lg:grid-cols-[.8fr_1.2fr]"><div className="space-y-5"><ContactCard icon={faWhatsapp} title="WhatsApp" text={STORE_CONFIG.whatsappNumber ? 'Échangez directement avec notre équipe.' : 'Le numéro officiel sera bientôt disponible.'} /><ContactCard icon={faEnvelope} title="E-mail" text={STORE_CONFIG.contactEmail || 'L’adresse officielle sera bientôt disponible.'} /><div className="rounded-2xl bg-green-950 p-7 text-white"><FontAwesomeIcon icon={faCommentDots} className="text-3xl text-gold-400" /><h2 className="mt-5 text-2xl text-white">Une réponse humaine</h2><p className="mt-3 text-sm leading-6 text-green-100/70">Nous ne publions ni adresse, ni horaire, ni coordonnée qui n’a pas été confirmé par VitalNova.</p></div></div>
+      <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-green-950/5 sm:p-9"><span className="eyebrow">Écrivez-nous</span><h2 className="mt-3">Envoyer un message</h2>{sent ? <div className="mt-10 rounded-xl bg-green-50 p-8 text-center"><FontAwesomeIcon icon={faCircleCheck} className="text-4xl text-green-700" /><h3 className="mt-4 font-display text-2xl font-bold text-green-950">Message prêt</h3><p className="mt-2 text-sm text-stone-600">Le formulaire fonctionne en mode démonstration. L’envoi réel sera activé avec le backend.</p><Button className="mt-5" onClick={() => setSent(false)}>Écrire un autre message</Button></div> : <form onSubmit={submit} className="mt-7 grid gap-5" noValidate><Field label="Nom complet" error={errors.name}><Input name="name" autoComplete="name" /></Field><Field label="Adresse e-mail" error={errors.email}><Input name="email" type="email" autoComplete="email" /></Field><Field label="Téléphone (facultatif)"><Input name="phone" inputMode="tel" autoComplete="tel" /></Field><Field label="Votre message" error={errors.message}><textarea name="message" rows="5" className="input-base h-auto py-3" /></Field><Button type="submit" size="lg">Envoyer le message</Button><p className="text-xs text-stone-400">Envoi simulé pour cette phase frontend — aucune donnée n’est transmise.</p></form>}</div></section>
+  </main>
+}
+
+function ContactCard({ icon, title, text }) { return <div className="flex gap-4 rounded-2xl border border-stone-200 bg-white p-6"><span className="grid size-12 shrink-0 place-items-center rounded-xl bg-green-100 text-xl text-green-800"><FontAwesomeIcon icon={icon} /></span><div><h2 className="text-xl">{title}</h2><p className="mt-1 text-sm leading-6 text-stone-500">{text}</p></div></div> }
+function Field({ label, error, children }) { return <label className="grid gap-1.5 text-sm font-bold text-stone-700"><span>{label}</span>{children}{error && <span className="text-xs font-medium text-red-600">{error}</span>}</label> }
