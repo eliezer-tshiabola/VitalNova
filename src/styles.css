@@ -54,7 +54,7 @@
   .field-label { display: grid; gap: .4rem; color: #44403c; font-size: .875rem; font-weight: 700; }
   .counter { position: absolute; right: -.15rem; top: -.1rem; display: grid; min-width: 1.15rem; height: 1.15rem; place-items: center; border-radius: 999px; background: var(--color-green-800); padding-inline: .2rem; color: white; font-size: .62rem; font-weight: 900; }
   .counter-gold { background: var(--color-gold-400); color: var(--color-green-950); }
-  .mobile-nav { position: fixed; z-index: 45; right: 1rem; bottom: calc(.5rem + env(safe-area-inset-bottom)); left: 1rem; display: flex; align-items: center; gap: .2rem; border: 1px solid rgb(6 71 44 / .12); border-radius: .875rem; background: rgb(255 255 255 / .94); padding: .25rem; box-shadow: 0 14px 40px rgb(3 45 28 / .16); backdrop-filter: blur(18px); }
+  .mobile-nav { position: fixed; z-index: 45; right: 1rem; bottom: calc(.5rem + env(safe-area-inset-bottom)); left: 1rem; display: flex; align-items: center; gap: .25rem; border: 1px solid rgb(6 71 44 / .12); border-radius: .875rem; background: rgb(255 255 255 / .94); padding: .35rem; box-shadow: 0 14px 40px rgb(3 45 28 / .16); backdrop-filter: blur(18px); }
   .product-card { display: flex; min-width: 0; cursor: pointer; flex-direction: column; overflow: hidden; border: 1px solid rgb(6 71 44 / .1); border-radius: 1rem; background: white; box-shadow: 0 8px 30px rgb(3 45 28 / .045); transition: transform .25s, box-shadow .25s; }
   .product-card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgb(3 45 28 / .10); }
   .hero-section { position: relative; overflow: hidden; background-color: var(--color-ivory-50); background-image: url('./assets/hero-products-v2.jpg'); background-position: center; background-size: cover; }
