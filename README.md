@@ -2,6 +2,8 @@
 
 Frontend e-commerce responsive pour VitalNova, conçu avec React, Vite et Tailwind CSS v4.
 
+Le dépôt contient désormais aussi une première base backend sécurisée dans [`backend/`](backend/README.md), construite avec Django et Django REST Framework.
+
 ## Fonctionnalités
 
 - Catalogue responsive, catégories et fiches produits.
@@ -26,5 +28,6 @@ npm run lint
 npm run build
 ```
 
-Les produits, tarifs, avis et frais actuellement visibles sont des données de démonstration à valider avant mise en production commerciale.
+Pour les commandes Django, consultez [`backend/README.md`](backend/README.md) et les règles d’exploitation dans [`backend/SECURITY.md`](backend/SECURITY.md).
 
+Les produits, tarifs, avis et frais actuellement visibles sont des données de démonstration à valider avant mise en production commerciale.
